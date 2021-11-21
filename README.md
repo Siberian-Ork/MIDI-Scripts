@@ -1,2 +1,5 @@
 # MIDI-Scripts
-Some small scripts I'm using to control audio 
+Some small scripts I'm using to control audio
+
+Relies on alsa-utils for getting values (aseqdump).
+amixer instead of pactl is also possible
