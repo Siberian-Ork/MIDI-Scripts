@@ -1,0 +1,10 @@
+#!/bin/bash
+aseqdump -p "nanoKONTROL" | \
+while IFS=" ," read src ev1 ev2 ch label1 data1 label2 data2 rest; do
+    case "$ev1 $ev2 $data1 $data2" in
+        "Control change 45 127") deadbeef --play-pause ;;
+        "Control change 48 127") deadbeef --next $(($data2*100/127)) ;;
+        "Control change 47 127") deadbeef --prev $(($data2*100/127)) ;;
+        "Control change 46 127") deadbeef --stop $(($data2*100/127)) ;;
+    esac
+done

@@ -1,0 +1,8 @@
+#!/bin/bash
+aseqdump -p "nanoKONTROL" | \
+while IFS=" ," read src ev1 ev2 ch label1 data1 label2 data2 rest; do
+    case "$ev1 $ev2 $data1" in
+        "Control change 13") pactl set-sink-volume @DEFAULT_SINK@ $(($data2*100/127))% ;;
+        "Control change 12") deadbeef --volume $(($data2*100/127)) ;;
+    esac
+done
